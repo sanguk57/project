@@ -71,6 +71,24 @@ public class BlogController {
         return "/login/loginForm";
     }
 
+    @GetMapping("/idSearch")
+    public String idSearch(Model model){
+        model.addAttribute("MemberDTO",new MemberDTO());
+        return "/login/idSearch";
+    }
+    @PostMapping("idSearch")
+    public String idSearchResult(Model model){
+
+        model.addAttribute("MemberDTO",new MemberDTO());
+        return "/login/idSearch";
+    }
+
+    @GetMapping("pwdSearch")
+    public String pwdSearch(Model model){
+
+        model.addAttribute("MemberDTO",new MemberDTO());
+        return "/login/pwdSearch";
+    }
 
 
 }

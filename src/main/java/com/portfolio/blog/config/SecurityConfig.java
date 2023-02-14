@@ -29,7 +29,7 @@ public class SecurityConfig {
         http.authorizeRequests()
                 .antMatchers("/css/**", "/js/**", "/assets/**").permitAll()
                 .antMatchers("/", "/blog/**").permitAll()
-                .antMatchers("/main/**").hasRole("USER")
+                .antMatchers("/main/**").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
         ;

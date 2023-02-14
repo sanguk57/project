@@ -1,12 +1,17 @@
 package com.portfolio.blog.dto;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
-@Data
+@Getter
+@Setter
+@ToString
 public class MemberDTO {
 
     @NotBlank(message = "아이디는 필수 입력 값입니다.")
