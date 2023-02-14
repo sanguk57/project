@@ -22,5 +22,4 @@ public class BlogMemberVisitCount extends  BaseTimeEntity{
     @JoinColumn(name="Member_id")
     @ManyToOne(fetch = FetchType.LAZY)
     private  Member member;
-
 }
