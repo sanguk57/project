@@ -1,6 +1,9 @@
 package com.portfolio.blog.dto;
 
 import lombok.Data;
+import org.springframework.data.annotation.CreatedBy;
+
+import javax.persistence.Column;
 
 @Data
 public class BlogMemberVisitCountDTO {
@@ -8,5 +11,4 @@ public class BlogMemberVisitCountDTO {
 
     private  String id;
 
-    private String visitDate;
 }

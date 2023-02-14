@@ -1,6 +1,10 @@
 package com.portfolio.blog.dto;
 
+import com.portfolio.blog.constant.Authority;
 import lombok.Data;
+
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 @Data
 public class BlogListDTO { // 유저 한명장 하나의 블로그를 가짐
@@ -13,5 +17,9 @@ public class BlogListDTO { // 유저 한명장 하나의 블로그를 가짐
     private String blogName;
 
     private  String blogDetail;
+
+
+    @Enumerated(EnumType.STRING)
+    private Authority blogAuthority;
 
 }
