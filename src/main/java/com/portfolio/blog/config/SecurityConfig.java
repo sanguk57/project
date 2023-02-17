@@ -3,6 +3,7 @@ package com.portfolio.blog.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -27,6 +28,11 @@ public class SecurityConfig{
 
 
     @Bean
+    public static ServletListenerRegistrationBean httpSessionEventPublisher() {
+        return new ServletListenerRegistrationBean(new HttpSessionEventPublisher());
+    }
+
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
 
         http.authorizeRequests()
@@ -46,10 +52,22 @@ public class SecurityConfig{
                 .failureUrl("/blog/login/error") //로그인 실패시 이동주소
                 .loginProcessingUrl("/blog/login")
                 .permitAll()
+
         ;
+
+
+        http
+                .sessionManagement()
+                .maximumSessions(1)
+                .maxSessionsPreventsLogin(true)
+                .expiredUrl("/blog/login")
+        ;
+
 
         http.logout()
                 .logoutSuccessUrl("/blog/login")
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
                 .permitAll()
         ;
 
