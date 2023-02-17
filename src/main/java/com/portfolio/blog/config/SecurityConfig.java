@@ -13,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -32,6 +33,7 @@ public class SecurityConfig{
                 .antMatchers("/css/**", "/js/**", "/assets/**").permitAll()
                 .antMatchers("/", "/blog/**").permitAll()
                 .antMatchers("/main/**").permitAll()
+                .antMatchers("/blog-information-api/**").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
         ;
@@ -63,7 +65,14 @@ public class SecurityConfig{
                 .maxSessionsPreventsLogin(true)
                 .expiredUrl("/blog/login"));
 
+        http.csrf().disable();
         return  http.build();
+//                //중략
+//                .and()
+//                .csrf()
+//                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+//                .and();
+
     }
 
 
